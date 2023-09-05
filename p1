@@ -1,0 +1,92 @@
+import pandas as pd
+import os
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.rcParams['figure.figsize']=8,4
+import warnings
+warnings.filterwarnings('ignore')
+
+os.chdir('C:\\Users\\Varsha\\Desktop\\MeMe\\Python\\Pandas and Seaborn-20230630T033224Z
+demo=pd.read_csv('DemographicData.csv')
+demo
+demo.head()
+demo.columns=['CountryName','CountryCode','BirthRate','InternetUsers','IncomeGroup']
+sns.boxplot(data=demo,x='IncomeGroup',y='InternetUsers')
+sns.distplot(demo['InternetUsers'],bins=10)
+sns.lmplot(data=demo,x='BirthRate',y='InternetUsers')
+sns.lmplot(data=demo,x='BirthRate',y='InternetUsers',fit_reg=False)
+sns.lmplot(data=demo,x='BirthRate',y='InternetUsers',fit_reg=False,hue='IncomeGroup')
+sns.lmplot(data=demo,x='BirthRate',y='InternetUsers',fit_reg=False,hue='IncomeGroup',hei
+sns.violinplot(data=demo,x='IncomeGroup',y='InternetUsers',width=0.8,inner='box',saturat
+sns.rugplot(data=demo,x='BirthRate',y='InternetUsers',height=1,hue='IncomeGroup')
+-----------------------------------------------------------------------------------------------
+import pandas as pd
+import os
+os.getcwd()
+os.chdir('C:\\Users\\Varsha\\Desktop\\MeMe\\Python')
+movie=pd.read_csv('Movie-Ratings.csv')
+movie
+movie.columns=['Film','Genre','RottenTomatoes','AudienceRatings','Budget','Year']
+movie
+movie.info()
+movie.head()
+movie.tail()
+movie.describe()
+movie.describe().transpose()
+movie.Genre.cat.categories
+-------------------------------------------------------------------------------------------------
+import matplotlib.pyplot as plt
+import seaborn as sns
+plt.rcParams['figure.figsize']=8,4
+import warnings
+warnings.filterwarnings('ignore')
+m=sns.jointplot(data=movie,x='RottenTomatoes',y='AudienceRatings')
+m1=sns.jointplot(data=movie,x='RottenTomatoes',y='AudienceRatings',kind='hex')
+m2=sns.jointplot(data=movie,x='RottenTomatoes',y='AudienceRatings',kind='reg')
+m1=sns.jointplot(data=movie,x='RottenTomatoes',y='AudienceRatings',kind='hist')
+n=sns.distplot(movie.AudienceRatings,bins=10)
+n1=sns.histplot(movie.AudienceRatings,bins=10)
+sns.set_style('darkgrid')
+n2=sns.histplot(movie.AudienceRatings,bins=10)
+sns.set_style('white')
+n3=sns.histplot(movie.AudienceRatings,bins=15)
+plt.hist(movie[movie.Genre=='Action'].Budget)
+plt.hist(movie[movie.Genre=='Drama'].Budget)
+plt.hist(movie[movie.Genre=='Thriller'].Budget)
+plt.show()
+f,axes=plt.subplots(1,2,figsize=(12,6),sharex=True,sharey=True)
+v1=sns.kdeplot(data=movie,x='Budget',y='RottenTomatoes',ax=axes[0])
+v2=sns.kdeplot(data=movie,x='Budget',y='AudienceRatings',ax=axes[1])
+v1.set(xlim=(-50,250))
+-------------------------------------------------------------------------------
+import pandas as pd
+import os
+print(os.getcwd())
+os.chdir('C:\\Users\\NMIT-21\\Downloads\\Pandas and Seaborn-20230630T033224Z-001\\Pandas
+start=pd.read_csv('50_startups.csv')
+start
+start[40:50]
+start[['R&D','Profit']].head(10)
+str=start.Admin+start.Marketing
+str=start.Admin-start.Marketing
+str
+start['Newc']=start.Admin+start.Profit
+start
+start.Marketing<=90
+start[start.Admin>=100000]
+-------------------------------------------
+demo=pd.read_csv('DemographicData.csv')
+demo.columns=['Country_Name', 'Country_Code', 'Birth_rate', \
+ 'Internet_users','Income_Group']
+demo[20:60:2]
+demo[::-1]
+demo[-1::]
+demo['CountryName'].head()
+demo[['Country_Name','Birth_rate']][10:20]
+results=demo.Birth_rate*demo.Internet_users
+results
+
+
+
+
